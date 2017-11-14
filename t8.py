@@ -139,7 +139,7 @@ init = tf.global_variables_initializer()
 # hold step and error values
 t = []
 
-# Run your graph
+# Run graph
 with tf.Session() as sess:
     
     # restore model (no need to initialize variables if restorint model)
@@ -148,13 +148,11 @@ with tf.Session() as sess:
     # initialize variables
     sess.run(init)
 
-    # Fit the function.
-    for step in range(60000):
-        
+    for step in range(60000):        
         # pull batches at random
         i = np.random.permutation(train_x.shape[0])[:batch_size]
 
-        # get your data
+        # get data
         train_data = {x:train_x[i,:], y:train_y[i,:], keep_prob: 0.98}
         valid_data = {x:valid_x, y:valid_y, keep_prob: 1.0}
         test_data = {x:test_x, y:test_y, keep_prob: 1.0}
@@ -200,9 +198,7 @@ with tf.Session() as sess:
 
                 # Break out from the for-loop.
                 break                
-            
-            
-    # here is where you see how good of a Data Scientist you are        
+                 
     print("Accuracy on the Training Set:", accuracy.eval(train_data) )
     print("Accuracy on the Validation Set:", accuracy.eval(valid_data) ) 
     print("Accuracy on the Test Set:", accuracy.eval(test_data) )
